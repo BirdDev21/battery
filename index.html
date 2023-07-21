@@ -1,0 +1,58 @@
+<!DOCTYPE Html>
+<head>
+<link rel="stylesheet" href="style.css">
+<title>Battery Boyz</title>
+
+</head>
+<body>
+<h1>Battery Boyz</h1>
+<h3 id="coins"></h3>
+<h4 id="coinsPS"></h3>
+<img src="IMG_1286.png" alt="" onclick="gainCoin()" id="center" >
+<button onclick ="getCoinsPS()">1 worker </button>
+<button conclick="getCoinsPSa">5 workers</button>
+
+<script>
+var coins = 0;
+var coinsPS = 0; //per second
+var coinsPC = 1; // per count
+
+
+function gainCoin() {  // function to get coins
+
+coins += coinsPC;
+
+}
+
+setInterval(function renderCoins() {
+
+document.getElementById("coins").innerHTML = "Coins: " + coins;
+
+})
+
+
+setInterval(function renderCoinsPS() {
+
+document.getElementById("coinsPS").innerHTML = "Coins per second: " + 
+coinsPS;
+
+})
+
+var addInterval;
+function getCoinsPS() {
+  if (coins >= 50) {
+    coinsPS += 1;
+    coins -= 50;
+  } else {
+    alert("Sorry, you don't have enough coins.")
+  }
+  if (addInterval) window.clearTimeout(addInterval)
+  addInterval = setInterval(function coinPS() {
+    coins += coinsPS;
+  }, 1000)
+}
+
+
+
+</script>
+</body>
