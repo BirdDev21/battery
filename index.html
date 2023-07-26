@@ -2,21 +2,86 @@
 <html>
 <head>
   <title>Battery Clicker Game</title>
-  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Battery Clicker</h1>
-  <p>Click the battery to generate power!</p>
-  <p>Power: <span id="power">0</span></p>
-  <img src="IMG_1286.png" alt="" onclick="clickBattery()" id="center">
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f2f2;
+}
 
-  <h2>Auto Clickers:</h2>
-  <button onclick="buyAutoClicker(0)">Buy Auto Clicker (5/s) (Cost: 100)</button>
-  <button onclick="buyAutoClicker(1)">Buy Auto Clicker (10/s) (Cost: 250)</button>
-  <button onclick="buyAutoClicker(2)">Buy Auto Clicker (20/s) (Cost: 500)</button>
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column; /* Center elements vertically */
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #008080;
+}
+
+.content {
+  text-align: center;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin: 5px;
+  background-color: #008080;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #005959;
+}
+
+.side-menu {
+  display: none;
+  width: 200px;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}
+
+.side-menu h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #008080;
+}
+
+  </style>
+  <h1>Battery Clicker</h1>
+  <div class="content">
+    <p>Click the battery to generate power!</p>
+    <p>Power: <span id="power">0</span></p>
+    <img src="IMG_1286.png" alt="" onclick="clickBattery()">
+    <button onclick="toggleUpgradeMenu()">Upgrade</button>
+  </div>
+  <div class="side-menu" id="upgradeMenu">
+     
+
+    <h2>Upgrades</h2>
+    <button onclick="buyAutoClicker(0)">Buy Auto Clicker (5/s) (Cost: 100)</button>
+    <button onclick="buyAutoClicker(1)">Buy Auto Clicker (10/s) (Cost: 250)</button>
+    <button onclick="buyAutoClicker(2)">Buy Auto Clicker (20/s) (Cost: 500)</button>
+  </div>
 
   <script>
-let power = 0;
+    let power = 0;
 let autoClickers = [0, 0, 0];
 const autoClickerRates = [5, 10, 20];
 const autoClickerCosts = [100, 250, 500];
@@ -70,6 +135,7 @@ function loadGame() {
     power = gameData.power;
     autoClickers = gameData.autoClickers;
     updatePower();
+    startAutoClickerInterval();
   }
 }
 
@@ -86,17 +152,27 @@ function resetGame() {
 // Load the game when the page is loaded
 window.onload = function() {
   loadGame();
-  startAutoClickerInterval();
 };
+
+// Save the game periodically
+setInterval(saveGame, 5000); // Save every 5 seconds
 
 // Save the game when the page is unloaded
 window.onbeforeunload = function() {
   saveGame();
 };
 
-setInterval(startAutoClickerInterval, 100);
 
+const upgradeMenu = document.getElementById("upgradeMenu");
+upgradeMenu.style.display = "none"; // Hide the menu initially
 
+function toggleUpgradeMenu() {
+  if (upgradeMenu.style.display === "none") {
+    upgradeMenu.style.display = "block";
+  } else {
+    upgradeMenu.style.display = "none";
+  }
+}
 
 
   </script>
