@@ -53,7 +53,49 @@ function startAutoClickerInterval() {
   }
 }
 
+// Save game data to localStorage
+function saveGame() {
+  const gameData = {
+    power,
+    autoClickers
+  };
+  localStorage.setItem('batteryClickerGameData', JSON.stringify(gameData));
+}
+
+// Load game data from localStorage
+function loadGame() {
+  const savedData = localStorage.getItem('batteryClickerGameData');
+  if (savedData) {
+    const gameData = JSON.parse(savedData);
+    power = gameData.power;
+    autoClickers = gameData.autoClickers;
+    updatePower();
+  }
+}
+
+// Clear game data from localStorage
+function resetGame() {
+  power = 0;
+  autoClickers = [0, 0, 0];
+  clearInterval(autoClickerInterval);
+  autoClickerInterval = null;
+  updatePower();
+  saveGame();
+}
+
+// Load the game when the page is loaded
+window.onload = function() {
+  loadGame();
+  startAutoClickerInterval();
+};
+
+// Save the game when the page is unloaded
+window.onbeforeunload = function() {
+  saveGame();
+};
+
 setInterval(startAutoClickerInterval, 100);
+
 
 
 
