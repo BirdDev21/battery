@@ -2,14 +2,13 @@
 <html>
 <head>
   <title>Battery Clicker Game</title>
-</head>
-<body>
+
   <style>
     body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-image: url(BG.png);
+  background-color: #f2f2f2;
 }
 
 .container {
@@ -17,7 +16,6 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  flex-direction: column; /* Center elements vertically */
 }
 
 h1 {
@@ -61,33 +59,26 @@ button:hover {
   margin-top: 0;
   margin-bottom: 10px;
   color: #008080;
-  
 }
-#center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 10%;
-    height: 250px;
-    margin-top: 250px;
-    margin-right: 800px;
-  }
+
   </style>
+</head>
+<body>
   <h1>Battery Clicker</h1>
   <div class="content">
     <p>Click the battery to generate power!</p>
     <p>Power: <span id="power">0</span></p>
-    <img src="IMG_1286-removebg-preview.png" alt="" onclick="clickBattery()" id="center">
+    <button onclick="clickBattery()">Click Battery</button>
     <button onclick="toggleUpgradeMenu()">Upgrade</button>
   </div>
   <div class="side-menu" id="upgradeMenu">
-     
-
     <h2>Upgrades</h2>
     <button onclick="buyAutoClicker(0)">Buy Auto Clicker (5/s) (Cost: 100)</button>
     <button onclick="buyAutoClicker(1)">Buy Auto Clicker (10/s) (Cost: 250)</button>
     <button onclick="buyAutoClicker(2)">Buy Auto Clicker (20/s) (Cost: 500)</button>
   </div>
+
+  
 
   <script>
     let power = 0;
@@ -171,7 +162,9 @@ window.onbeforeunload = function() {
   saveGame();
 };
 
+// (Previous JavaScript code remains unchanged)
 
+// Show/hide the upgrade menu when the "Upgrade" button is clicked
 const upgradeMenu = document.getElementById("upgradeMenu");
 upgradeMenu.style.display = "none"; // Hide the menu initially
 
