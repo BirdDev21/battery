@@ -8,7 +8,7 @@
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f2f2f2;
+  background-image: url(BG.png);
 }
 
 .container {
@@ -60,6 +60,10 @@ button:hover {
   margin-bottom: 10px;
   color: #008080;
 }
+.battery{
+  margin-top: 155px;
+  margin-right: 100px;
+}
 
   </style>
 </head>
@@ -68,8 +72,8 @@ button:hover {
   <div class="content">
     <p>Click the battery to generate power!</p>
     <p>Power: <span id="power">0</span></p>
-    <button onclick="clickBattery()">Click Battery</button>
-  <img oclick="toggleUpgradeMenu()" href="IMG_1286-removebg-preview.png">
+    <img class="battery" src="IMG_1286-removebg-preview.png" alt="" onclick="clickBattery()" height="400px" width="200px" >
+    <button onclick="toggleUpgradeMenu()">Upgrade</button>
   </div>
   <div class="side-menu" id="upgradeMenu">
     <h2>Upgrades</h2>
@@ -180,4 +184,3 @@ function toggleUpgradeMenu() {
   </script>
 </body>
 </html>
-
